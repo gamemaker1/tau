@@ -19,6 +19,8 @@ run `flask --app source/server run` to start a development server.
 
 if you wish to deploy this app to production, follow [this guide](https://flask.palletsprojects.com/en/2.3.x/tutorial/deploy/).
 
-## license
+## attributions and license
+
+the html templates make use of components from the free and open source library [`hyperui`](https://www.hyperui.dev/).
 
 this code is licensed under the `agpl-3.0` license, a copy of which you can find [here](license.md).
