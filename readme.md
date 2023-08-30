@@ -5,10 +5,10 @@
 
 ## setup
 
-> you'll need python3 and pip installed beforehand.
+> you'll need [`python3`](https://www.python.org/downloads/) and [`pip`](https://pip.pypa.io/en/stable/installation/) installed beforehand.
 
 download the source code from github - either by [cloning the repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository#cloning-a-repository)
-or by downloading the source archive directly from [this url](https://github.com/gamemaker1/tau/archives/ref/head/trunk.zip).
+or by downloading the source archive directly from [this url](https://github.com/gamemaker1/tau/archives/refs/heads/trunk.zip).
 
 once you have the source downloaded, run `python -m venv .venv` to activate the virtual
 environment, followed by a `pip install -r requirements.txt` to install all dependencies.
