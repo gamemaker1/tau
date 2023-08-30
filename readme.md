@@ -1,13 +1,7 @@
-# <div align="center"> tau </div>
+# <div align="center"> <sup><sub> tiny, adorable, urls </sub></sup> </div>
 
-<div align="center">
-
-<small> tiny, adorable, urls </small>
-
-a url shortener, written in python using [`flask`](https://flask.palletsprojects.com/en/2.3.x/)
-and [`sqlite3`](https://docs.python.org/3/library/sqlite3.html)
-
-</div>
+> a url shortener, written in python using [`flask`](https://flask.palletsprojects.com/en/2.3.x/)
+> and [`sqlite3`](https://docs.python.org/3/library/sqlite3.html)
 
 ## setup
 
