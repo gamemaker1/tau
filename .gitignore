@@ -1,0 +1,8 @@
+# .gitignore
+# tells git to ignore certain files.
+
+__pycache__/
+build/
+source/database/*.db
+
+.venv/

@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+	</head>
+	<body>
+		<header class="bg-gray-50">
+			<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+				<div class="sm:flex sm:items-center sm:justify-between">
+					<div class="text-center sm:text-left">
+						<h1 class="text-2xl font-bold text-pink-600 sm:text-3xl">
+							Short URLs
+						</h1>
+
+						<p class="mt-1.5 text-sm text-gray-500">
+							A URL shortener, written in Python using Flask and SQL.
+						</p>
+					</div>
+
+					<div
+						class="mt-4 flex flex-col gap-4 sm:mt-0 sm:flex-row sm:items-center"
+					>
+						<a href="/create">
+							<button
+								class="block rounded-lg bg-pink-800 px-5 py-3 text-sm font-medium text-white transition hover:bg-pink-700 focus:outline-none focus:ring"
+								type="button"
+							>
+								Shorten URL
+							</button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="mx-auto max-w-screen-xl">
+			<table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+				<thead class="ltr:text-left rtl:text-right">
+					<tr>
+						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+							ID
+						</th>
+						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+							Name
+						</th>
+						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+							Long URL
+						</th>
+						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+							Shortened URL
+						</th>
+						<th class="px-4 py-2"></th>
+					</tr>
+				</thead>
+
+				<tbody class="divide-y divide-gray-200">
+					{% for item in url_list %}
+					<tr>
+						{% for key, value in item.items() %}
+						<td
+							class="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900"
+						>
+							{% if key.endswith('url') %}
+							<a
+								href="{{ value }}"
+								class="font-medium text-pink-600 underline dark:text-pink-500 hover:no-underline"
+							>
+								{{ value }}
+							</a>
+							{% else %} {{ value }} {% endif %}
+						</td>
+						{%- endfor %}
+						<td class="whitespace-nowrap text-center px-4 py-2">
+							<form action="/urls/{{ item['id'] }}" method="delete">
+								<button
+									name="Delete"
+									value="Delete"
+									class="inline-block rounded px-4 py-2 text-xs font-medium text-white hover:bg-pink-700"
+								>
+									Delete
+								</button>
+							</form>
+						</td>
+					</tr>
+					{%- endfor %}
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
