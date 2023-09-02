@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<header class="bg-gray-50">
-			<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+			<div class="mx-auto max-w-[80%] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 				<div class="sm:flex sm:items-center sm:justify-between">
 					<div class="text-center sm:text-left">
 						<h1 class="text-2xl font-bold text-pink-600 sm:text-3xl">
@@ -34,53 +34,103 @@
 				</div>
 			</div>
 		</header>
-		<div class="mx-auto max-w-screen-xl">
+		<div class="mx-auto max-w-[80%]">
 			<table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
 				<thead class="ltr:text-left rtl:text-right">
 					<tr>
-						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-							ID
-						</th>
-						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+						<th
+							class="min-w-[80%] whitespace-nowrap px-4 py-2 font-medium text-left text-gray-900"
+						>
 							Name
 						</th>
-						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-							Long URL
-						</th>
-						<th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
-							Shortened URL
-						</th>
-						<th class="px-4 py-2"></th>
+						<th class="px-4 py-2">Actions</th>
 					</tr>
 				</thead>
 
 				<tbody class="divide-y divide-gray-200">
 					{% for item in url_list %}
 					<tr>
-						{% for key, value in item.items() %}
 						<td
-							class="whitespace-nowrap text-center px-4 py-2 font-medium text-gray-900"
+							class="min-w-[80%] px-4 py-2 font-medium text-left text-gray-900"
 						>
-							{% if key.endswith('url') %}
-							<a
-								href="{{ value }}"
-								class="font-medium text-pink-600 underline dark:text-pink-500 hover:no-underline"
-							>
-								{{ value }}
-							</a>
-							{% else %} {{ value }} {% endif %}
+							{{ item['name'] }}
 						</td>
-						{%- endfor %}
 						<td class="whitespace-nowrap text-center px-4 py-2">
-							<form action="/urls/{{ item['id'] }}" method="delete">
+							<div class="grid grid-cols-3 gap-4">
 								<button
-									name="Delete"
-									value="Delete"
-									class="inline-block rounded px-4 py-2 text-xs font-medium text-white hover:bg-pink-700"
+									onclick="window.open('{{ item['long_url'] }}', '_blank')"
+									class="inline-block rounded px-4 py-2 text-xs font-medium text-pink-500 hover:text-white"
 								>
-									Delete
+									<svg
+										viewBox="0 0 24 24"
+										width="24"
+										height="24"
+										stroke="currentColor"
+										stroke-width="2"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path
+											d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+										></path>
+										<polyline points="15 3 21 3 21 9"></polyline>
+										<line x1="10" y1="14" x2="21" y2="3"></line>
+									</svg>
 								</button>
-							</form>
+
+								<button
+									onclick="navigator.clipboard.writeText('{{ item['short_url'] }}')"
+									class="inline-block rounded px-4 py-2 text-xs font-medium text-pink-500 hover:text-white"
+								>
+									<svg
+										viewBox="0 0 24 24"
+										width="24"
+										height="24"
+										stroke="currentColor"
+										stroke-width="2"
+										fill="none"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<rect
+											x="9"
+											y="9"
+											width="13"
+											height="13"
+											rx="2"
+											ry="2"
+										></rect>
+										<path
+											d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+										></path>
+									</svg>
+								</button>
+
+								<form action="/urls/{{ item['id'] }}" method="delete">
+									<button
+										name="Delete"
+										value="Delete"
+										class="inline-block rounded px-4 py-2 text-xs font-medium text-pink-500 hover:text-white"
+									>
+										<svg
+											viewBox="0 0 24 24"
+											width="24"
+											height="24"
+											stroke="currentColor"
+											stroke-width="2"
+											fill="none"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<polyline points="3 6 5 6 21 6"></polyline>
+											<path
+												d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+											></path>
+										</svg>
+									</button>
+								</form>
+							</div>
 						</td>
 					</tr>
 					{%- endfor %}

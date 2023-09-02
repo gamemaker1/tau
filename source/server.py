@@ -65,7 +65,7 @@ def create_url():
   db = get_db()
   db.cursor().execute(
     "insert into urls values (?, ?, ?, ?);",
-    (id, content["name"], content["long_url"], f"{request.url_root}urls/id}")
+    (id, content["name"], content["long_url"], f"{request.url_root}urls/{id}")
   )
   db.commit()
 
